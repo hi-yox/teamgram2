@@ -472,7 +472,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
         
         let appVersion = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "unknown"
         
-//        let baseAppBundleId = Bundle.main.bundleIdentifier!
+        let baseAppBundleId = Bundle.main.bundleIdentifier!
 //        let appGroupName = "group.\(baseAppBundleId)"
 //        let maybeAppGroupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupName)
         
