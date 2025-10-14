@@ -70,3 +70,5 @@ submodules/FFMpegBinding/SharedHeaders/*
 submodules/OpenSSLEncryptionProvider/SharedHeaders/*
 submodules/TelegramCore/FlatSerialization/Sources/*
 buildServer.json
+submodules/TelegramCore/.build
+bazel-teamgram-ios

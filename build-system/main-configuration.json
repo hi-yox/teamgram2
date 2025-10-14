@@ -1,0 +1,14 @@
+{
+	"bundle_id": "com.ch.teamgram",
+	"api_id": "22357343",
+	"api_hash": "0a33fe882d5e18007a9cbd0f02dc2c8a",
+	"team_id": "L66V8DPG2G",
+	"app_center_id": "0",
+	"is_internal_build": "false",
+	"is_appstore_build": "true",
+	"appstore_id": "6752987190",
+	"app_specific_url_scheme": "tg",
+	"premium_iap_product_id": "org.telegram.telegramPremium.monthly",
+	"enable_siri": false,
+	"enable_icloud": false
+}

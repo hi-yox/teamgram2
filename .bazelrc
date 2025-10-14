@@ -37,3 +37,10 @@ build --strategy=SwiftCompile=standalone
 build --define RULES_SWIFT_BUILD_DUMMY_WORKER=1
 
 build --noenable_bzlmod
+
+build --swiftcopt=-index-store-path
+build --swiftcopt=./bazel_no_index
+
+
+build --features=-swift.index_store
+build --features=-swift.index_while_building
