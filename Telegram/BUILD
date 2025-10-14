@@ -551,7 +551,6 @@ plist_fragment(
     extension = "entitlements",
     template = "".join([
         aps_fragment,
-        app_groups_fragment,
         siri_fragment,
         associated_domains_fragment,
         icloud_fragment,
@@ -1977,14 +1976,7 @@ ios_application(
     ],
     extensions = select({
         ":disableExtensionsSetting": [],
-        "//conditions:default": [
-            ":ShareExtension",
-            ":NotificationContentExtension",
-            ":NotificationServiceExtension" + notificationServiceExtensionVersion,
-            ":IntentsExtension",
-            ":WidgetExtension",
-            ":BroadcastUploadExtension",
-        ],
+        "//conditions:default": [],
     }),
     watch_application = select({
         ":disableExtensionsSetting": None,

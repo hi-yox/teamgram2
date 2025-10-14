@@ -474,7 +474,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
         
         let baseAppBundleId = Bundle.main.bundleIdentifier!
         let appGroupName = "group.\(baseAppBundleId)"
-        let maybeAppGroupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupName)
+//        let maybeAppGroupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupName)
         
         let buildConfig = BuildConfig(baseAppBundleId: baseAppBundleId)
         self.buildConfig = buildConfig
@@ -571,11 +571,17 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
             }
             |> runOn(Queue.mainQueue())
         }, autolockDeadine: autolockDeadine, encryptionProvider: OpenSSLEncryptionProvider(), deviceModelName: nil, useBetaFeatures: !buildConfig.isAppStoreBuild, isICloudEnabled: buildConfig.isICloudEnabled)
-        
-        guard let appGroupUrl = maybeAppGroupUrl else {
-            self.mainWindow?.presentNative(UIAlertController(title: nil, message: "Error 2", preferredStyle: .alert))
-            return true
-        }
+//        let appGroupName = "group.\(baseAppBundleId)"
+//        let maybeAppGroupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupName)
+//        guard let appGroupUrl = maybeAppGroupUrl else {
+//            self.mainWindow?.presentNative(UIAlertController(title: nil, message: "Error 2", preferredStyle: .alert))
+//            return true
+//        }      
+//        guard let appGroupUrl = maybeAppGroupUrl else {
+//            self.mainWindow?.presentNative(UIAlertController(title: nil, message: "Error 2", preferredStyle: .alert))
+//            return true
+//        }
+        let appGroupUrl = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/groups");
         
         var isDebugConfiguration = false
         #if DEBUG
