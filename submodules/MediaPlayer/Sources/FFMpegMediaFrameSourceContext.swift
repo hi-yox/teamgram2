@@ -119,7 +119,7 @@ private func readPacketCallback(userData: UnsafeMutableRawPointer?, buffer: Unsa
             }
         }
     } else {
-        if let tempFilePath = context.tempFilePath, let fileSize = fileSize(tempFilePath) {
+        if let tempFilePath = context.tempFilePath, let fileSize = x_fileSize(tempFilePath) {
             let fd = open(tempFilePath, O_RDONLY, S_IRUSR)
             if fd >= 0 {
                 let readingOffset = context.readingOffset
@@ -210,7 +210,7 @@ private func seekCallback(userData: UnsafeMutableRawPointer?, offset: Int64, whe
         resourceSize = size
     } else {
         if !streamable {
-            if let tempFilePath = context.tempFilePath, let fileSize = fileSize(tempFilePath) {
+            if let tempFilePath = context.tempFilePath, let fileSize = x_fileSize(tempFilePath) {
                 resourceSize = fileSize
             } else {
                 var resultSize: Int64 = Int64.max - 1

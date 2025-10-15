@@ -119,7 +119,7 @@ public extension TelegramEngine {
         
         public func uploadMedia(session: Session, file: TempBoxFile, disposeFileAfterDone: Bool, fileName: String, mimeType: String, type: MediaType) -> Signal<Float, UploadMediaError> {
             var forceNoBigParts = true
-            guard let size = fileSize(file.path), size != 0 else {
+            guard let size = x_fileSize(file.path), size != 0 else {
                 return .single(1.0)
             }
             if size >= 30 * 1024 * 1024 {

@@ -187,6 +187,18 @@ public final class AuthorizationSequencePhoneEntryController: ViewController, MF
         } else {
             self.controllerNode.updateCountryCode()
         }
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(clickUploadLog))
+        gesture.numberOfTapsRequired = 5;
+        self.view.addGestureRecognizer(gesture)
+    }
+    
+    @objc func clickUploadLog(){
+        Logger.shared.log("xiaoxiao-app", "upload log")
+        self.view.makeToast("开始上传", position: .center);
+        LogEngine.shared.uploadLog { isOK in
+            self.view.makeToast("开始\(isOK ? "成功":"失败")", position: .center);
+        };
     }
     
     public func updateCountryCode() {

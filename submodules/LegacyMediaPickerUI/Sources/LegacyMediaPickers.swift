@@ -659,7 +659,7 @@ public func legacyAssetPickerEnqueueMessages(context: AccountContext, account: A
                                     var randomId: Int64 = 0
                                     arc4random_buf(&randomId, 8)
                                     let resource = LocalFileReferenceMediaResource(localFilePath: path, randomId: randomId)
-                                    let media = TelegramMediaFile(fileId: MediaId(namespace: Namespaces.Media.LocalFile, id: randomId), partialReference: nil, resource: resource, previewRepresentations: previewRepresentations, videoThumbnails: [], immediateThumbnailData: nil, mimeType: mimeType, size: fileSize(path), attributes: [.FileName(fileName: name)], alternativeRepresentations: [])
+                                    let media = TelegramMediaFile(fileId: MediaId(namespace: Namespaces.Media.LocalFile, id: randomId), partialReference: nil, resource: resource, previewRepresentations: previewRepresentations, videoThumbnails: [], immediateThumbnailData: nil, mimeType: mimeType, size: x_fileSize(path), attributes: [.FileName(fileName: name)], alternativeRepresentations: [])
                                     
                                     var attributes: [MessageAttribute] = []
                                     let text = trimChatInputText(convertMarkdownToAttributes(caption ?? NSAttributedString()))
@@ -866,7 +866,7 @@ public func legacyAssetPickerEnqueueMessages(context: AccountContext, account: A
                                     resource = VideoLibraryMediaResource(localIdentifier: asset.backingAsset.localIdentifier, conversion: asFile ? .passthrough : .compress(resourceAdjustments))
                                 case let .tempFile(path, _, _):
                                     if asFile || (asAnimation && !path.contains(".jpg")) {
-                                        if let size = fileSize(path) {
+                                        if let size = x_fileSize(path) {
                                             resource = LocalFileMediaResource(fileId: Int64.random(in: Int64.min ... Int64.max), size: size)
                                             account.postbox.mediaBox.moveResourceData(resource.id, fromTempPath: path)
                                         } else {

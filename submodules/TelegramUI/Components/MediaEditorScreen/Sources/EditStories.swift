@@ -51,7 +51,7 @@ public extension MediaEditorScreenImpl {
                             duration = file.duration
                         }
                         let symlinkPath = data.path + ".mp4"
-                        if fileSize(symlinkPath) == nil {
+                        if x_fileSize(symlinkPath) == nil {
                             let _ = try? FileManager.default.linkItem(atPath: data.path, toPath: symlinkPath)
                         }
                         return .single(nil)

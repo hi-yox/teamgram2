@@ -402,6 +402,35 @@ enum MultipartUploadError {
     case generic
 }
 
+public func x_fileSize(_ path: String, useTotalFileAllocatedSize: Bool = false) -> Int64? {
+    /*if useTotalFileAllocatedSize {
+        let url = URL(fileURLWithPath: path)
+        if let values = (try? url.resourceValues(forKeys: Set([.isRegularFileKey, .fileAllocatedSizeKey]))) {
+            if values.isRegularFile ?? false {
+                if let fileSize = values.fileAllocatedSize {
+                    return Int64(fileSize)
+                }
+            }
+        }
+    }*/
+    
+    var value = stat()
+    if lstat(path, &value) == 0 {
+        if (value.st_mode & S_IFMT) == S_IFLNK {
+            return 0
+        }
+        
+        if useTotalFileAllocatedSize {
+            return Int64(value.st_blocks) * Int64(value.st_blksize)
+        }
+        
+        return value.st_size
+    } else {
+        return nil
+    }
+}
+
+
 func multipartUpload(network: Network, postbox: Postbox, source: MultipartUploadSource, encrypt: Bool, tag: MediaResourceFetchTag?, hintFileSize: Int64?, hintFileIsLarge: Bool, forceNoBigParts: Bool, useLargerParts: Bool = false, increaseParallelParts: Bool = false, useMultiplexedRequests: Bool = true, useCompression: Bool = false) -> Signal<MultipartUploadResult, MultipartUploadError> {
     enum UploadInterface {
         case download(Download)
@@ -448,7 +477,7 @@ func multipartUpload(network: Network, postbox: Postbox, source: MultipartUpload
                     fetchedResource = fetchedMediaResource(mediaBox: postbox.mediaBox, userLocation: .other, userContentType: .other, reference: resource)
                     |> map { _ in }
                 case let .tempFile(file):
-                    if let size = fileSize(file.path) {
+                    if let size = x_fileSize(file.path) {
                         dataSignal = .single(.resourceData(MediaResourceData(path: file.path, offset: 0, size: size, complete: true)))
                         headerSize = 0
                         fetchedResource = .complete()

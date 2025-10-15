@@ -4291,7 +4291,7 @@ public final class ChatControllerImpl: TelegramBaseController, ChatController, G
                     case let .data(data):
                         if data.complete {
                             var symlinkPath = data.path + ".mp3"
-                            if fileSize(symlinkPath) != nil {
+                            if x_fileSize(symlinkPath) != nil {
                                 try? FileManager.default.removeItem(atPath: symlinkPath)
                             }
                             let _ = try? FileManager.default.linkItem(atPath: data.path, toPath: symlinkPath)

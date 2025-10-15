@@ -113,7 +113,7 @@ public final class SoftwareVideoLayerFrameManager {
         self.dataDisposable.set((firstReady
         |> deliverOn(softwareVideoApplyQueue)).start(next: { [weak self] path, resource in
             if let strongSelf = self {
-                let size = fileSize(path)
+                let size = x_fileSize(path)
                 Logger.shared.log("SoftwareVideo", "loaded video from \(stringForResource(resource)) (file size: \(String(describing: size))")
                 
                 let _ = strongSelf.source.swap(SoftwareVideoSource(path: path, hintVP9: strongSelf.hintVP9, unpremultiplyAlpha: true))

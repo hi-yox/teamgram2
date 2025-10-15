@@ -60,7 +60,7 @@ func _internal_saveCompleteCallDebugLog(account: Account, callId: CallId, logPat
         }
     }
     
-    guard let size = fileSize(tempFile.path) else {
+    guard let size = x_fileSize(tempFile.path) else {
         Logger.shared.log("saveCompleteCallDebugLog", "Could not get log file size")
         
         return .complete()
