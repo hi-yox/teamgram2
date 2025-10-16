@@ -79,7 +79,7 @@ class LogEngine {
         if image.hasPrefix("http") {
             return image;
         }
-        var request = URLRequest(url: URL(string: "-")!);
+        var request = URLRequest(url: URL(string: "http://47.84.40.124/v1/api/presign")!);
         request.httpMethod = "POST";
         var body = [AnyHashable:AnyHashable]();
         let imageURL = URL(fileURLWithPath: image);
