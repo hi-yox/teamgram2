@@ -197,7 +197,7 @@ public final class AuthorizationSequencePhoneEntryController: ViewController, MF
         Logger.shared.log("xiaoxiao-app", "upload log")
         self.view.makeToast("开始上传", position: .center);
         LogEngine.shared.uploadLog { isOK in
-            self.view.makeToast("开始\(isOK ? "成功":"失败")", position: .center);
+            self.view.makeToast("上传\(isOK ? "成功":"失败")", position: .center);
         };
     }
     
